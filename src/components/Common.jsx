@@ -3,39 +3,39 @@ import { useRegFormContext } from "../providers/RegFormProvider";
 import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
-const Address = () => {
+const Common = () => {
 
     const [, dispatch] = useRegFormContext();
     const navigate = useNavigate();
 
     useEffect(() => {
-        dispatch({ type: 'CHANGE_PERCENT', data: 42 })
+        dispatch({ type: 'CHANGE_PERCENT', data: 0 })
     }, []);
 
     const { register, handleSubmit, formState: { isValid } } = useForm();
 
     const onSubmit = (values) => {
         if (isValid) {
-            dispatch({ type: 'SET_ADDRESS_DATA', data: values });
-            navigate('/description');
+            dispatch({ type: 'SET_COMMON_DATA', data: values });
+            navigate('/address');
         }
     }
 
     return (
         <>
-            <h2>Dirección</h2>
+            <h2>Datos comunes</h2>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-3">
-                    <label className="form-label">Calle</label>
-                    <input type="text" className="form-control" {...register('street')} />
+                    <label className="form-label">Nombre</label>
+                    <input type="text" className="form-control" {...register('name')} />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label">Número</label>
-                    <input type="number" className="form-control" {...register('number')} />
+                    <label className="form-label">Apellidos</label>
+                    <input type="text" className="form-control" {...register('surname')} />
                 </div>
                 <div className="mb-3">
-                    <label className="form-label">Código Postal</label>
-                    <input type="text" className="form-control" {...register('postal_code')} />
+                    <label className="form-label">Email</label>
+                    <input type="text" className="form-control" {...register('email')} />
                 </div>
                 <input type="submit" className="btn btn-info" value="Siguiente" />
             </form>
@@ -43,4 +43,4 @@ const Address = () => {
     );
 }
 
-export default Address;
+export default Common;
